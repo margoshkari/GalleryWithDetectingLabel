@@ -109,7 +109,7 @@ namespace Gallery
             {
                 DetectLabelsResponse detectLabelsResponse = await rekognitionClient.DetectLabelsAsync(detectlabelsRequest);
                 
-                if (detectLabelsResponse.Labels.Any(label => label.Name == comboBox1.SelectedItem.ToString()))
+                if (comboBox1.SelectedItem != null && detectLabelsResponse.Labels.Any(label => label.Name == comboBox1.SelectedItem.ToString()))
                 {
                     detectLabelsResponse.Labels.Where(label => label.Name == comboBox1.SelectedItem.ToString()).First().Instances.ForEach(instance =>
                         ShowBoundingBoxPositions(instance.BoundingBox));
